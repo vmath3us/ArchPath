@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
+command_for_setup="sudo touch /etc/subuid /etc/subgid && sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER && podman system migrate"
 if command -v podman && command -v sudo && command -v curl; then
+    exec $command_for_setup
     printf "\no podman está instalado, tentando configurar o modo rootless usando sudo e systemd\n" &&
-    sudo touch /etc/subuid /etc/subgid && sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER && podman system migrate && mkdir_setup
+    mkdir_setup
 else
     printf "\ncomandos não encontrados"
 fi
