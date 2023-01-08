@@ -6,15 +6,10 @@ Do host, é exigido:
 * A possibilidade de rodar containers rootless, via podman (docker é suportado pelo distrobox, mas neste projeto o podman será configurado por padrão). Para execução do [Podman Rootless](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md#enable-user-namespaces-on-rhel7-machines), setup.sh tentará executar o comando "sudo touch /etc/subuid /etc/subgid && sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER && systemctl enable --now podman --user && podman system migrate". Caso isso não funcione, procure a documentação da sua distribuição para o podman, e edite setup.sh, alterando o comando
 * Curl
 
-Setup.sh irá criar as pastas $HOME/.local/bin e $HOME/.local/bin/archpath e $HOME/.config/distrobox, e dentro dessa última, distrobox.conf, configurando a imagem padrão para o Archlinux, e o gerenciador de container como podman. Após, via curl, o [distrobox será instalado em $HOME/.local/bin](curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix ~/.local). Já via distrobox, um container será gerado (o processo pode demorar dependendo da sua conexão, e da performance da sua máquina). O scritp first-run.sh é uma entrada do tipo distrobox-export, que será executado em seguida. Como será o primeiro [distrobox-enter](https://github.com/89luca89/distrobox/blob/main/docs/usage/distrobox-enter.md), serão instalados vários pacotes para integração do container com o host, [como pode ser visto aqui](https://github.com/89luca89/distrobox/blob/main/distrobox-init). Uma vez isso terminado, serão executados, já dentro do container, os comandos abaixo, somente nessa vez:
-* sudo pacman -Syu base-devel git --needed --noconfirm
-* sudo pacman -Fyy
-* sudo cp export-bin.sh /usr/share/libpalm/scritps/export-hook.sh
-* sudo cp 99-export-bin.hook /usr/share/libpalm/hooks/99-export-bin.hook
-* git clone https://aur.archlinux.org/yay-bin /tmp/yay-bin && cd /tmp/yay-bin/ && makepkg -s && sudo pacman -U *.zst --noconfirm
+Setup.sh irá criar as pastas $HOME/.local/bin e $HOME/.local/bin/archpath e $HOME/.config/distrobox, e dentro dessa última, distrobox.conf, configurando a imagem padrão para o Archlinux, e o gerenciador de container como podman. Após, via curl, o [distrobox será instalado em $HOME/.local/bin](curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix ~/.local). Já via distrobox, um container será gerado (o processo pode demorar dependendo da sua conexão, e da performance da sua máquina). O bash-scritp first-setup.sh será executado em seguida, usando [distrobox-enter](https://github.com/89luca89/distrobox/blob/main/docs/usage/distrobox-enter.md). Como essa será a primeira execução do container ArchPath, serão instalados vários pacotes para integração do container com o host, [como pode ser visto aqui](https://github.com/89luca89/distrobox/blob/main/distrobox-init). Uma vez isso terminado, serão executados, já dentro do container, os comandos de [first-setup.sh](https://github.com/vmath3us/archpath/blob/main/first-setup.sh)
 
 Ao fim, adicione o conteúdo de setup.shell no seu .SHELLrc (bash,zsh...), e rode:
-* exec $SHELL
+    exec $SHELL
 
 O hook do pacman será responsável por rodar o comando distrobox-export --bin, para $HOME/.local/bin/archpath, para que os comandos instalados fiquem visíveis no host. O [yay](https://aur.archlinux.org/packages/yay-bin) já será exportado pelo hook.
 
