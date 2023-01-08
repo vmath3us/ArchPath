@@ -1,0 +1,26 @@
+#### setup to vmath3us/archpath, past on .SHELLrc (read your shell documentation)
+
+# bash
+#### https://www.gnu.org/software/bash/manual/bash.html#Command-Search-and-Execution
+
+#zsh
+#### https://zsh.sourceforge.io/Doc/Release/Command-Execution.html
+
+#fish
+#### https://fishshell.com/docs/current/cmds/fish_command_not_found.html
+
+#--------------------------past---------------------------------------------
+export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin/archpath
+function command_not_found_handle {
+printf "command not found, searching on ArchPath container\n\n"
+search_term="$1"
+yay -Fq "$search_term"
+printf "\nsearch on aur? zero for yes: "
+read -r search_aur </dev/tty
+    if [ "$search_aur" -eq "0" ] ; then
+        yay -Ss "$search_term"
+    else
+        exit 127
+    fi
+}
+#-----------------------------------------------------------------------------
