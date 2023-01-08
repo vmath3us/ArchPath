@@ -9,6 +9,7 @@ Do host, é exigido:
 Setup.sh irá criar as pastas $HOME/.local/bin e $HOME/.local/bin/archpath e $HOME/.config/distrobox, e dentro dessa última, distrobox.conf, configurando a imagem padrão para o Archlinux, e o gerenciador de container como podman. Após, via curl, o [distrobox será instalado em $HOME/.local/bin](curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix ~/.local). Já via distrobox, um container será gerado (o processo pode demorar dependendo da sua conexão, e da performance da sua máquina). O bash-scritp first-setup.sh será executado em seguida, usando [distrobox-enter](https://github.com/89luca89/distrobox/blob/main/docs/usage/distrobox-enter.md). Como essa será a primeira execução do container ArchPath, serão instalados vários pacotes para integração do container com o host, [como pode ser visto aqui](https://github.com/89luca89/distrobox/blob/main/distrobox-init). Uma vez isso terminado, serão executados, já dentro do container, os comandos de [first-setup.sh](https://github.com/vmath3us/archpath/blob/main/first-setup.sh)
 
 Ao fim, adicione o conteúdo de setup.shell no seu .SHELLrc (bash,zsh...), e rode:
+
     exec $SHELL
 
 O hook do pacman será responsável por rodar o comando distrobox-export --bin, para $HOME/.local/bin/archpath, para que os comandos instalados fiquem visíveis no host. O [yay](https://aur.archlinux.org/packages/yay-bin) já será exportado pelo hook.
