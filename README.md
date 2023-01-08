@@ -1,4 +1,4 @@
-# Archpath <h1>
+# ArchPath <h1>
 
 Graças ao [Distrobox](https://github.com/89luca89/distrobox) de 89luca89, se tornou fácil rodar programas de uma distribuição em outra. Se valendo do comando distrobox-export, e dos hooks do pacman, Archpath se propoẽ a, caso um comando não seja encontrado no seu path, guiar o usuário a instalá-lo num container do Archlinux, e ao fim, exportá-lo para o path do host, tornando-o instantaneamente acessível. Programas gráficos e serviços não estão no escopo desse projeto, mas deve ser facilmente estendível também para esse propósito, como pode ser visto na documentação do [distrobox-export](https://github.com/89luca89/distrobox/blob/main/docs/usage/distrobox-export.md).
 
