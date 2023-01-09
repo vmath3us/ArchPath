@@ -1,4 +1,4 @@
 #!/bin/bash
-while read -r trg; do
+for trg in $((read -r)); do
     distrobox-export --bin $(which $trg) --export-path /home/usuario/.local/bin/archpath
 done
