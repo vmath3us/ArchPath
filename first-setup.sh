@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 yaydir=$(mktemp -d -p /tmp)
+sudo pacman -Fyyy &&
 sudo pacman -Syu reflector --noconfirm --needed &&
 sudo reflector --save /etc/pacman.d/mirrorlist --country US,UK --protocol https --latest 50 &&
-sudo sed -i "s|ParallelDownloads.*|ParallelDownloads = 15|g" /etc/pacman.conf &&
+sudo sed -i "s|ParallelDownloads.*|ParallelDownloads = 15\nDisableDownloadTimeout\nILoveCandy|g" /etc/pacman.conf
 sudo pacman -Syu base-devel git --noconfirm --needed &&
 sudo cp export-bin.sh /usr/share/libalpm/scripts/export-bin.sh &&
 sudo cp 99-export-bin.hook /usr/share/libalpm/hooks/99-export-bin.hook &&
