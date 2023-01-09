@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Type = Package 
+Target= *
+[Action]
+Description = export bin for home, using DistroBox
+When = PostTransaction
+Exec = /usr/share/libalpm/scripts/export-targets.sh
+AbortOnFail
+NeedsTargets
