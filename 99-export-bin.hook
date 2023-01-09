@@ -5,6 +5,6 @@ Target= *
 [Action]
 Description = export bin for home, using DistroBox
 When = PostTransaction
-Exec = /usr/share/libalpm/scripts/export-targets.sh
+Exec = /usr/share/libalpm/scripts/export-bin.sh
 AbortOnFail
 NeedsTargets
