@@ -1,9 +1,9 @@
 [Trigger]
 Operation = Install
-Type = Package 
+Type = Path 
 Target= *
 [Action]
-Description = export bin for home, using DistroBox
+Description = Create logfile to export bin, using DistroBox
 When = PostTransaction
 Exec = /usr/share/libalpm/scripts/export-bin.sh
 AbortOnFail
