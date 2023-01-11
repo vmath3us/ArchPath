@@ -27,7 +27,7 @@ $HOME/.local/bin/distrobox enter -n ArchPath --  /usr/bin/bash first-setup.sh
 }
 if command -v podman && command -v sudo && command -v curl; then
      command_for_setup &&
-     printf "\no podman está instalado, tentando configurar o modo rootless usando sudo e systemd\n" &&
+     printf "\no podman está instalado, tentando configurar o modo rootless usando sudo\n" &&
      mkdir_setup
  else
      printf "\ncomandos não encontrados"
