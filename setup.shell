@@ -1,4 +1,4 @@
-#### setup to vmath3us/archpath, past on .SHELLrc (read your shell documentation)
+#### setup to vmath3us/ArchPath, past on .SHELLrc (read your shell documentation)
 
 # bash
 #### https://www.gnu.org/software/bash/manual/bash.html#Command-Search-and-Execution
@@ -11,7 +11,7 @@
 
 #--------------------------past---------------------------------------------
 export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin/archpath
-function command_not_found_handle {
+command_not_found_handle() { ############## or rename example to cnf, and using cnf !!
 printf "command not found, searching on ArchPath container\n\n"
 search_term="$1"
 yay -Fq "$search_term"
@@ -23,4 +23,6 @@ read -r search_aur </dev/tty
         exit 127
     fi
 }
-#-----------------------------------------------------------------------------
+distrobox-import () { ################### or rename, example dtb-imp
+    /home/$USER/.local/bin/distrobox-enter  -n ArchPath -- /usr/bin/distrobox-import-handler
+}
