@@ -1,0 +1,6 @@
+#!/bin/sh
+while read -r binary ; do
+    if [ -x /"$binary" ]  && [ "$binary" != "usr/bin/" ]; then
+    distrobox-export --bin /"$binary" --export-path /home/$USER/.local/bin/archpath
+    fi
+done < /var/log/distrobox-path.log
