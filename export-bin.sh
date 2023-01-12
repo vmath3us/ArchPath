@@ -5,5 +5,6 @@ while read -r trg; do
 done
 sed -i '/bin/!d' /tmp/list-box &&
 sed -i '/share/d' /tmp/list-box &&
+sed -i '/lib/d' /tmp/list-box &&
 cp /tmp/list-box /var/log/distrobox-path.log &&
 printf "\n------------------------------\nrun distrobox-import now\n------------------------------"
