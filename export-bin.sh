@@ -6,5 +6,8 @@ done
 sed -i '/bin/!d' /tmp/list-box &&
 sed -i '/share/d' /tmp/list-box &&
 sed -i '/lib/d' /tmp/list-box &&
-cp /tmp/list-box /var/log/distrobox-path.log &&
-printf "\n------------------------------\nrun distrobox-import now\n------------------------------"
+sed -i '/include/d' /tmp/list-box &&
+mkdir -p /var/log/distrobox-import/
+printf "#-delete lines to not export\n" > /var/log/distrobox-import/distrobox-path.log &&
+cat /tmp/list-box >> /var/log/distrobox-import/distrobox-path.log &&
+printf "\n------------------------------\nrun distrobox-import now\n------------------------------%s\n"
