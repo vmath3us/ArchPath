@@ -27,7 +27,7 @@ first_entry_setup
 first_entry_setup (){
 printf "###########################################################################"
 printf "\n Distrobox instalado, criando container...\n"
-DBX_CONTAINER_MANAGER="podman" HOME/.local/bin/distrobox create ArchPath --image docker.io/archlinux/archlinux:latest --volume /home/$USER/.cache/pacmancache:/var/cache/pacman/pkg:rw &&
+DBX_CONTAINER_MANAGER="podman" $HOME/.local/bin/distrobox create ArchPath --image docker.io/archlinux/archlinux:latest --volume /home/$USER/.cache/pacmancache:/var/cache/pacman/pkg:rw &&
 printf "\ncontainer criado, preparando para instalar o Yay\n"
 printf "###########################################################################"
 printf "\nhttps://github.com/Jguer/yay\n"
