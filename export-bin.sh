@@ -4,6 +4,7 @@ while read -r trg; do
     echo $trg >> /tmp/list-box 2> /dev/null
 done
 sed -i '/bin/!d' /tmp/list-box &&
+sed -i '1d' /tmp/list-box &&
 sed -i '/share/d' /tmp/list-box &&
 sed -i '/lib/d' /tmp/list-box &&
 sed -i '/include/d' /tmp/list-box &&
