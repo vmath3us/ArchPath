@@ -9,12 +9,8 @@ mkdir -pv $HOME/.local/bin
 printf "###########################################################################"
 mkdir -pv $HOME/.local/bin/archpath
 printf "###########################################################################"
-mkdir -pv $HOME/.config/distrobox
 mkdir -pv $HOME/.cache/pacmancache
 printf "###########################################################################"
-printf "\ncriando arquivo de configuração do distrobox\n"
-printf "###########################################################################"
-printf "container_image="archlinux"\ncontainer_manager="podman"" > $HOME/.config/distrobox/distrobox.conf &&
 printf "###########################################################################"
 distrobox_initial_setup
 }
@@ -31,7 +27,7 @@ first_entry_setup
 first_entry_setup (){
 printf "###########################################################################"
 printf "\n Distrobox instalado, criando container...\n"
-$HOME/.local/bin/distrobox create ArchPath --volume /home/$USER/.cache/pacmancache:/var/cache/pacman/pkg:rw &&
+DBX_CONTAINER_MANAGER="podman" HOME/.local/bin/distrobox create ArchPath --image docker.io/archlinux/archlinux:latest --volume /home/$USER/.cache/pacmancache:/var/cache/pacman/pkg:rw &&
 printf "\ncontainer criado, preparando para instalar o Yay\n"
 printf "###########################################################################"
 printf "\nhttps://github.com/Jguer/yay\n"
@@ -43,7 +39,7 @@ printf "\napós instalar algo via yay, basta executar distrobox-import\n"
 printf "###########################################################################%s\n"
 }
 printf "###########################################################################\n                           vmatheus/ArchPath                           \n###########################################################################%s\n"
-
+printf "\nprocurando pelos comandos podman, sudo e curl%s\n" &&
 if command -v podman && command -v sudo && command -v curl; then
     command_for_setup &&
     printf "\no podman está instalado, tentando configurar o modo rootless usando sudo\n" &&
