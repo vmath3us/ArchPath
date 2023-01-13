@@ -15,6 +15,7 @@ command_not_found_handle() { ############## or rename example to cnf, and using 
 printf "command not found, searching on ArchPath container\n\n"
 search_term="$1"
 yay -Fq "$search_term"
+if [ $? -ne 0 ] ; then
 printf "\nsearch on aur? zero for yes: "
 read -r search_aur </dev/tty
     if [ "$search_aur" -eq "0" ] ; then
@@ -22,6 +23,7 @@ read -r search_aur </dev/tty
     else
         exit 127
     fi
+fi
 }
 distrobox-import () { ################### or rename, example dtb-imp
     /home/$USER/.local/bin/distrobox-enter  -n ArchPath -- /usr/bin/distrobox-import-handler
