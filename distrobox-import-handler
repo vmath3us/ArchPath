@@ -1,8 +1,4 @@
 #!/bin/bash
-sudo nvim /var/log/distrobox-import/distrobox-path.log &&
-sudo sed -i '/#/d' /var/log/distrobox-import/distrobox-path.log &&
-while read -r binary ; do
-    if [ -x /"$binary" ]  && [ "$binary" != "usr/bin/" ]; then
-    distrobox-export --bin /"$binary" --export-path /home/$USER/.local/bin/archpath
-    fi
-done < /var/log/distrobox-import/distrobox-path.log
+name_command=$(tail -n1 /var/log/distrobox-import/distrobox-path.log)
+binary=$(which $name_command)
+distrobox-export --bin /"$binary" --export-path /home/$USER/.local/bin/archpath

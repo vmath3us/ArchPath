@@ -14,17 +14,18 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin/archpath
 command_not_found_handle() { ############## or rename example to cnf, and using cnf !!
 printf "command not found, searching on ArchPath container\n\n"
 search_term="$1"
-yay -Fq "$search_term"
+distrobox-archpath-save "$1"
+$HOME/.local/.bin/archpath/yay -Fq "$search_term"
 if [ $? -ne 0 ] ; then
 printf "\nsearch on aur? zero for yes: "
 read -r search_aur </dev/tty
     if [ "$search_aur" -eq "0" ] ; then
-        yay -Ss "$search_term"
+        $HOME/.local/.bin/archpath/yay -Ss "$search_term"
     else
         exit 127
     fi
 fi
 }
 distrobox-import () { ################### or rename, example dtb-imp
-    /home/$USER/.local/bin/distrobox-enter  -n ArchPath -- /usr/bin/distrobox-import-handler
+    $HOME/.local/bin/distrobox-enter  -n ArchPath -- /usr/bin/distrobox-import-handler
 }
