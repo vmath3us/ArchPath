@@ -1,5 +1,6 @@
 #!/bin/bash
-sudo nvim /var/log/distrobox-import/distrobox-path.log &&
+EDITOR="nvim"
+sudoedit /var/log/distrobox-import/distrobox-path.log &&
 sudo sed -i '/#/d' /var/log/distrobox-import/distrobox-path.log &&
 while read -r binary ; do
     if [ -x /"$binary" ]  && [ "$binary" != "usr/bin/" ]; then
