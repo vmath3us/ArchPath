@@ -26,5 +26,5 @@ read -r search_aur </dev/tty
 fi
 }
 distrobox-import () { ################### or rename, example dtb-imp
-    /home/$USER/.local/bin/distrobox-enter  -n ArchPath -- /usr/bin/distrobox-import-handler
+    $HOME/.local/bin/distrobox-enter  -n ArchPath -- /usr/bin/distrobox-import-handler
 }
